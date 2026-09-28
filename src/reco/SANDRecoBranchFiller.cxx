@@ -84,8 +84,8 @@ void SANDRecoBranchFiller<SANDRecoVersion::experimental>::_FillRecoBranches(
     LOG.WARNING() << GetName() << ": no entry for evtID=" << trigger.evtID << "\n";
     return;
   }
-
-  fCAFTree->GetEntry(it->second);
+  
+  CheckedGetEntry(fCAFTree, it->first, "SAND reco event lookup");
 
   sr.common.ixn.sandreco  = fSR->common.ixn.sandreco;
   sr.common.ixn.nsandreco = fSR->common.ixn.nsandreco;
@@ -162,7 +162,7 @@ void SANDRecoBranchFiller<SANDRecoVersion::legacy>::_FillRecoBranches(
   std::vector<track>* ptr   = nullptr;
   fRecoTree->SetBranchAddress("cluster", &pcl);
   fRecoTree->SetBranchAddress("track", &ptr);
-  fRecoTree->GetEntry(entry);
+  CheckedGetEntry(fRecoTree, entry, "SAND reco event lookup");
 
   if (pcl) {
     FillECalClusters(truthMatcher, sr, *pcl);
