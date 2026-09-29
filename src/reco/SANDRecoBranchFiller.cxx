@@ -87,7 +87,7 @@ void SANDRecoBranchFiller<SANDRecoVersion::experimental>::_FillRecoBranches(
     return;
   }
   
-  CheckedGetEntry(fCAFTree, it->first, "SAND reco event lookup");
+  CheckedGetEntry(fCAFTree, it->second, "SAND reco event lookup");
 
   sr.common.ixn.sandreco  = fSR->common.ixn.sandreco;
   sr.common.ixn.nsandreco = fSR->common.ixn.nsandreco;
